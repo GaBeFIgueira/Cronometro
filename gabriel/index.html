@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<style>
+p{
+	background: lightblue;
+	color: red;
+	font-family: Arial Black;
+	font-size: 40px;
+	padding: 4px;
+	width: 600px;
+	}
+button{
+	background: black;
+	color: white;
+	font-family:sans-serif;
+	font-size: 20px;
+	padding: 2px;
+	border-radius: 2px;
+	height: 50px;
+	width: 300px;
+	}
+#container{
+	border-size: 3px;
+	background:blue;
+	padding:20px;
+	width: 605px;
+	}
+</style>
+<body>
+<div id="container">
+	<button onclick="contagem()">Início</button>
+	<button onclick="paracontagem()">Termino</button>
+	<center><p id="tempo">00:00:00</p></center>
+</div>
+<script>
+var aux;
+function contagem(){
+	var s=1, min=0, hora=0;
+	aux = setInterval(segun, 16.66666667);
+	function segun(){
+		if (s>59){ min++; s=0; } 
+        if (min>59){ hora++; min=0; }
+		s = padLeft(s,2);
+        min = padLeft(min,2);
+        hora = padLeft(hora,2);
+		document.getElementById("tempo").innerHTML = hora+":"+min+":"+s;
+		s++;
+	}
+    function padLeft(numero, comprimento) { 
+        numero = numero.toString(); 
+        while (numero.length < comprimento)        
+            numero = "0" + numero;    
+        return numero;
+    }
+}
+function paracontagem(){ 
+	clearInterval(aux);
+}
+</script>
+</body>
+</html>
